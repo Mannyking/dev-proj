@@ -1,6 +1,7 @@
 package com.example.mobilebanking;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton imageButton;
+    ImageButton imageButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageButton = findViewById(R.id.imageButton);
+        imageButton2 = findViewById(R.id.imageButton2);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
                         alertDialog.dismiss();
                     }
                 });
+            }
+        });
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PdfGenerator.class);
+                startActivity(intent);
             }
         });
     }
