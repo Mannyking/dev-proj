@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         imageButton = findViewById(R.id.imageButton);
         imageButton2 = findViewById(R.id.imageButton2);
+        View toastView = getLayoutInflater().inflate(R.layout.toast_customization, findViewById(R.id.toast_customization_parent));
+        TextView text = toastView.findViewById(R.id.text);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "Toast", Toast.LENGTH_SHORT).show();
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setView(toastView);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.show();
+//                        Toast.makeText(MainActivity.this, "Toast", Toast.LENGTH_SHORT).show();
                     }
                 });
 
