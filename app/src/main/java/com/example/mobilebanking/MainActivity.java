@@ -1,9 +1,12 @@
 package com.example.mobilebanking;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,21 +17,42 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton imageButton;
-    ImageButton imageButton2;
+    ImageButton imageButton2, documentationIv;
+    View rootLayout, toastView;
+    BottomAppBar bottomAppBar;
+    BottomNavigationView bottomNavigationView;
+    FloatingActionButton qrCodeFAB;
+    TextView nameTv;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        count.start();
         imageButton = findViewById(R.id.imageButton);
         imageButton2 = findViewById(R.id.imageButton2);
-        View toastView = getLayoutInflater().inflate(R.layout.toast_customization, findViewById(R.id.toast_customization_parent));
+        toastView = getLayoutInflater().inflate(R.layout.toast_customization, findViewById(R.id.toast_customization_parent));
+        rootLayout = findViewById(R.id.root_layout);
+        NestedScrollView nestedScrollView = findViewById(R.id.nestedScrollView);
+        View includedLayout = findViewById(R.id.includedLayout);
+        bottomAppBar = findViewById(R.id.bottomAppBar);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        qrCodeFAB = findViewById(R.id.qrCodeFAB);
+        documentationIv = findViewById(R.id.documentation_iv);
+        nameTv = findViewById(R.id.name_tv);
+
+
         TextView text = toastView.findViewById(R.id.text);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +95,74 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        documentationIv.setOnClickListener(v ->  {
+            startActivity(new Intent(MainActivity.this, DocumentUpload.class));
+            CoroutineMomentKt.main();
+            CoroutineMomentKt.secondRequest();
+            nameTv.setText(CoroutineMomentKt.getJsonValue());
+        });
+
+
+        rootLayout.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.performClick(); // Simulate a click event
+                count.cancel();
+                count.start();
+            }
+            return false;
+        });
+
+//        nestedScrollView.setOnTouchListener((v, event) -> {
+//            if (event.getAction() == MotionEvent.ACTION_UP) {
+//                v.performClick(); // Simulate a click event
+//                count.cancel();
+//                count.start();
+//            }
+//            return false;
+//        });
+//
+//        includedLayout.setOnTouchListener((v, event) -> {
+//            if (event.getAction() == MotionEvent.ACTION_UP) {
+//                v.performClick(); // Simulate a click event
+//                count.cancel();
+//                count.start();
+//            }
+//            return false;
+//        });
+
+        bottomAppBar.setOnTouchListener((v, event) -> {
+            count.cancel();
+            count.start();
+            return false;
+        });
+
+        qrCodeFAB.setOnTouchListener((v, event) -> {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.performClick(); // Simulate a click event
+                count.cancel();
+                count.start();
+            }
+            return false;
+        });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        CoroutineMomentKt.main();
+        CoroutineMomentKt.secondRequest();
+    }
+
+    CountDownTimer count = new CountDownTimer(10 * 10 * 10 * 10, 100000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            System.out.println("ticking");
+        }
+
+        @Override
+        public void onFinish() {
+            Toast.makeText(MainActivity.this, "The idle works", Toast.LENGTH_LONG).show();
+        }
+    };
 }
