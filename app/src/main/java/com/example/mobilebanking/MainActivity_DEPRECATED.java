@@ -1,9 +1,7 @@
 package com.example.mobilebanking;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MotionEvent;
@@ -13,18 +11,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
-import com.bumptech.glide.Glide;
+import com.example.mobilebanking.interfaces.UserLevelInit;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_DEPRECATED extends AppCompatActivity implements UserLevelInit {
     ImageButton imageButton;
     ImageButton imageButton2, documentationIv;
     View rootLayout, toastView;
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FloatingActionButton qrCodeFAB;
     TextView nameTv;
+    String levelType = "";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        count.start();
         imageButton = findViewById(R.id.imageButton);
-        imageButton2 = findViewById(R.id.imageButton2);
+        imageButton2 = findViewById(R.id.pdf_iv);
         toastView = getLayoutInflater().inflate(R.layout.toast_customization, findViewById(R.id.toast_customization_parent));
         rootLayout = findViewById(R.id.root_layout);
         NestedScrollView nestedScrollView = findViewById(R.id.nestedScrollView);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 View view = getLayoutInflater().inflate(R.layout.dialog_box, null);
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_DEPRECATED.this);
                 builder.setView(view);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         toast.setView(toastView);
                         toast.setDuration(Toast.LENGTH_LONG);
                         toast.show();
-//                        Toast.makeText(MainActivity.this, "Toast", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity_DEPRECATED.this, "Toast", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -91,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PdfGenerator.class);
+                Intent intent = new Intent(MainActivity_DEPRECATED.this, PdfGenerator.class);
                 startActivity(intent);
             }
         });
 
         documentationIv.setOnClickListener(v ->  {
-            startActivity(new Intent(MainActivity.this, DocumentUpload.class));
+            startActivity(new Intent(MainActivity_DEPRECATED.this, DocumentUpload.class));
             CoroutineMomentKt.main();
             CoroutineMomentKt.secondRequest();
             nameTv.setText(CoroutineMomentKt.getJsonValue());
@@ -162,7 +161,19 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-            Toast.makeText(MainActivity.this, "The idle works", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity_DEPRECATED.this, "The idle works", Toast.LENGTH_LONG).show();
         }
     };
+
+    @Override
+    public int hasAccessLevel(@NonNull String levelType, int levelCode) {
+        this.levelType = levelType;
+        return levelCode;
+    }
+
+    @NonNull
+    @Override
+    public String getUserLevel() {
+        return levelType;
+    }
 }

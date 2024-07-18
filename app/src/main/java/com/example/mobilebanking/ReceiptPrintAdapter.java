@@ -20,8 +20,8 @@ import java.io.OutputStream;
 
 public class ReceiptPrintAdapter extends PrintDocumentAdapter {
 
-    private Context context;
-    private View contentView;
+    private final Context context;
+    private final View contentView;
 
     public ReceiptPrintAdapter(Context context, View contentView) {
         this.context = context;

@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/pdf_iv"
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_marginStart="64dp"
@@ -38,9 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="PDF"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintEnd_toEndOf="@+id/pdf_iv"
+        app:layout_constraintStart_toStartOf="@+id/pdf_iv"
+        app:layout_constraintTop_toBottomOf="@+id/pdf_iv" />
 
     <ImageButton
         android:id="@+id/documentation_iv"
@@ -49,7 +49,7 @@
         android:layout_marginStart="64dp"
         android:background="@drawable/background_oval"
         android:src="@drawable/ic_cart"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/pdf_iv"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/documentation_iv" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/keys_iv"
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_marginStart="64dp"
@@ -75,8 +75,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Flazz"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton4"
-        app:layout_constraintStart_toStartOf="@+id/imageButton4"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        android:text="KeyStore"
+        app:layout_constraintEnd_toEndOf="@+id/keys_iv"
+        app:layout_constraintStart_toStartOf="@+id/keys_iv"
+        app:layout_constraintTop_toBottomOf="@+id/keys_iv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

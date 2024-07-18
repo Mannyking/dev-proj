@@ -1,97 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
 
+    <!-- Placeholder for an image, such as a logo -->
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:background="@drawable/image001"
-        android:backgroundTint="@color/light_blue"
-        android:layout_marginStart="16dp"/>
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_home"
+        android:background="@color/black"/>
 
+    <!-- Transaction Details Header -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_transaction_details_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="5sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:text="Receipt"/>
-
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="15dp"
-        android:background="@drawable/ic_cart"
-        android:backgroundTint="@color/light_blue"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="5sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:layout_marginTop="2dp"
-        android:text="Transaction Successful"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:text="NGN 23,000"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="5sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:layout_marginTop="6dp"
-        android:text="John Doe"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="5sp"
-            android:textColor="@color/black"
-            android:text="KEYSTONE  - "/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="5sp"
-            android:textColor="@color/black"
-            android:text="1234567890"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="5sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Date"/>
+        android:text="Transaction Details"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
+    <!-- Transaction Type -->
+    <TextView
+        android:id="@+id/tv_transaction_type_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Transaction Type:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_transaction_type"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="5sp"
+        android:layout_marginEnd="10dp"
+        android:text="Deposit"
         android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:text="23/07/2023"/>
+        android:gravity="end" />
 
+    <!-- Recipient Details -->
+    <TextView
+        android:id="@+id/tv_recipient_details_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Recipient Details:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tv_recipient_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Customer name\nCMB | 202060***81"
+        android:textColor="@color/black"
+        android:gravity="end" />
 
+    <!-- Transaction Amount -->
+    <TextView
+        android:id="@+id/tv_transaction_amount_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Transaction Amount:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_transaction_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="100"
+        android:textColor="@color/black"
+        android:gravity="end" />
+
+    <!-- Transaction Number -->
+    <TextView
+        android:id="@+id/tv_transaction_number_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Transaction Number:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_transaction_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="V_A_F"
+        android:textColor="@color/black"
+        android:gravity="end" />
+
+    <!-- Transaction Date -->
+    <TextView
+        android:id="@+id/tv_transaction_date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Transaction Date:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_transaction_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="May 13th, 2024 15:10"
+        android:textColor="@color/black"
+        android:gravity="end" />
+
+    <!-- Transaction Status -->
+    <TextView
+        android:id="@+id/tv_transaction_status_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Transaction Status:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_transaction_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Successful"
+        android:textColor="@color/black"
+        android:gravity="end" />
 </LinearLayout>

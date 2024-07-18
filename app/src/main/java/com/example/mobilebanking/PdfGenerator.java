@@ -38,7 +38,6 @@ public class PdfGenerator extends AppCompatActivity {
     Button pdfButton;
     private static final int REQUEST_CODE_SAVE_PDF = 1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
